@@ -1,0 +1,32 @@
+파아쏜 개느림;;
+옆에 gpt돌리고 미로만들어진다고 개좋아하네;;라고하면 안되겠지?
+같은경우 안넣음.
+
+fs = input()
+ss = input()
+list1 = list(fs)
+list2 = list(ss)
+len1 = len(list1)
+len2 = len(list2)
+cnt=0
+
+
+#list2가 더 클떄
+if len2>len1 :
+  for i in range(0,len1,1) :
+    if list1[i] == list2[i] :
+      cnt=cnt+1
+  if cnt>= (len1/2) :
+    print(1)
+  else :
+    print(0)
+
+#list1가 더 클떄
+elif len1>len2 :
+  for i in range(0,len2,1) :
+    if list1[i] == list2[i] :
+      cnt=cnt+1
+  if cnt>= (len2/2) :
+    print(1)
+  else :
+    print(0)
