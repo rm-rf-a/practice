@@ -1,6 +1,8 @@
 재귀임;;
 하노잉~
 
+
+1914)
 public static void hanoi(int n, int start, int mid, int to) {
 
         if (n == 1) {
