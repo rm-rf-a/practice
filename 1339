@@ -1,3 +1,35 @@
 1339
 그리디
 자릿수높은것부터  9~1순으로 매핑
+-> 이걸로 하니까 97 + 77 + 77 + 79 + 77 하면 안됨;;
+얘가 가져가는 비율을 고려해야할듯
+-> 자릿수로 고려하면 되는거 같음.
+"strlen" c에도 문자열 길이 반환하는 함수가 있다는 사실
+std를 적극이용하자
+
+걍 파이썬으로 할란다ㅋㅋ
+
+N = int(input())
+charDic = {}
+
+for i in range(N):
+    temp = list(input())
+    cipher = len(temp) - 1
+
+    for j in range(cipher, -1, -1):
+        oneChar = temp[cipher - j]
+        if not oneChar in charDic:
+            charDic[oneChar] = 10 ** j
+        else:
+            charDic[oneChar] += 10 ** j
+
+
+charDic = dict(sorted(charDic.items(), key=lambda x: x[1], reverse=True))
+charNum = 9
+answer = 0
+
+for c in charDic:
+    answer += charDic[c] * charNum
+    charNum -= 1
+
+print(answer)
