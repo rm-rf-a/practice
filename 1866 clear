@@ -44,3 +44,13 @@ else:
 찾아보겠음 ㅇ.ㅇ
 특수문자ㅋㅋㅋㅋㅋ;;;
 카운트 함수쓰면 된다고함;; ㅇㅅㅇ
+
+stn = input()
+word = input()
+ 
+if word in stn:
+    print("있습니다")
+else:
+    print("없습니다")
+
+걍 이거 쓰면 되는거엿음;;
