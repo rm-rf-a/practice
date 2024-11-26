@@ -1,0 +1,10 @@
+14215
+삼각형 결정조건 a+b<c
+ㅇㅇ
+
+ls = sorted(list(map(int, input().split())))
+if ls[0] + ls[1] > ls[2]:
+    print(sum(ls))
+else:
+    print((ls[0] + ls[1]) * 2 - 1)
+이런 풀이도있는듯 ㅇㅇ
