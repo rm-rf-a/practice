@@ -3,3 +3,21 @@
 1 ≤ N ≤ 1,000,000
 소트없이는 애매한듯?
 dp로 가능할지도
+
+소트해서 하면됨ㅇㅇ
+중복에 주의할것ㅇㅅㅇ
+
+import sys
+
+N = int(sys.stdin.readline().strip())
+
+X = list(map(int, sys.stdin.readline().strip().split()))
+
+X_sort = sorted(list(set(X)))
+
+dic = {}
+for i in range(len(X_sort)):
+  dic[X_sort[i]] = i
+
+for i in X:
+  print(dic[i], end=" ")
