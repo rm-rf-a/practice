@@ -1,0 +1,15 @@
+문제 설명
+금쪽이의 컴퓨터는 1부터 n까지의 숫자를 중복되지 않게 출력한다. 
+이때, 몇 개의 숫자를 출력한 후 컴퓨터에 문제가 생겼다.
+리스트를 활용하여 금쪽이의 컴퓨터에서 출력되지 않은 숫자들을 구해보자.
+
+n = int(input())
+num = list(map(int, input().split()))
+ 
+s = set(range(1, n + 1))
+ 
+m = set(num)
+ 
+res = sorted(s - m)
+ 
+print(" ".join(map(str, res)))
