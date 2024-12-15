@@ -3,3 +3,34 @@
 소트 일일이 왜만듬? "딸깍"
 
 연습할겸 힙이나 퀵만들어보는것도 괜찬은듯
+
+import heapq
+
+def heapsort(iterable):
+    heap = []
+    result = []
+    for value in iterable:
+        heapq.heappush(heap, value)
+    for i in range(len(heap)):
+        result.append(heapq.heappop(heap))
+    return result
+
+import sys
+n = int(input())
+li = []
+for _ in range(n):
+    li.append(int(stdin.readline()))
+
+li = heapsort(li)
+for i in li:
+     print(i)
+
+이거 근데 tle 나옴ㅋㅋ
+
+import sys
+n = int(input())
+li = []
+for _ in range(n):
+    li.append(int(sys.stdin.readline()))
+for i in sorted(li):
+    print(i)
