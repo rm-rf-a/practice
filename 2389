@@ -1,1 +1,105 @@
 플레 치고는 쉬운듯
+어... 아닌듯 겁나 어려움;;
+이문제 쓴게아닌거같긴한데 (2389왜다이아임)
+클론코딩함.
+
+#include <bits/stdc++.h>
+
+constexpr double INF = std::numeric_limits<double>::max();
+
+struct Point{
+	long double x, y;
+	
+	friend Point operator - (Point const& p1, Point const& p2){
+		return { p1.x - p2.x, p1.y - p2.y };
+	}
+};
+
+struct Circle{
+	Point p;
+	long double r;
+};
+
+double getDist(Point const A, Point const B){
+	return (double)(std::sqrt(std::pow(A.x - B.x, 2) + std::pow(A.y - B.y, 2)));
+}
+
+Point calcCenter(Point const& A, Point const& B){
+	long double XX = A.x * A.x + A.y * A.y;
+	long double YY = B.x * B.x + B.y * B.y;
+	long double D = A.x * B.y - A.y * B.x;
+	
+	return { (B.y * XX - A.y * YY) / (D * 2), (A.x * YY - B.x * XX) / (D * 2) };
+}
+
+Circle circleFrom(Point const& A, Point const& B){
+	Point point = { (A.x + B.x) / 2.0, (A.y + B.y) / 2.0 };
+	return { point, getDist(A, B) / 2.0 };
+}
+
+Circle circleFrom(Point const& A, Point const& B, Point const& C){
+	Point point = calcCenter(B - A, C - A);
+	point.x += A.x;
+	point.y += A.y;
+	
+	return { point, getDist(point, A) };
+}
+
+bool isValid(std::vector<Point> const& p, Circle const& A){
+	for(Point const& i : p){
+		if(A.r < getDist(A.p, i)) return false;
+	}
+	
+	return true;
+}
+
+Circle minimumEnclosingCost(std::vector<Point> const& p){
+	int n = (int)p.size();
+	
+	if(n == 0) return { { 0, 0 }, 0.0 };
+	if(n == 1) return { { p[0] }, 0.0 };
+	
+	Circle result = { { 0, 0 }, INF };
+	
+	for(int i=0;i<n;++i){
+		for(int j=i+1;j<n;++j){
+			Circle temp = circleFrom(p[i], p[j]);
+			
+			if(temp.r < result.r && isValid(p, temp)) result = temp;
+		}
+	}
+	
+	for(int i=0;i<n;++i){
+		for(int j=i+1;j<n;++j){
+			for(int k=j+1;k<n;++k){
+				Circle temp = circleFrom(p[i], p[j], p[k]);
+				
+				if(temp.r < result.r && isValid(p, temp)) result = temp;
+			}
+		}
+	}
+	
+	return result;
+}
+
+int main() {
+	std::ios_base::sync_with_stdio(0);
+	std::cin.tie(0);
+	std::cout.tie(0);
+	
+	std::vector<Point> pointList;
+	int N;
+	
+	std::cin >> N;
+	for(int i=0;i<N;++i){
+		long double x, y;
+		std::cin >> x >> y;
+		
+		pointList.push_back({ x, y });
+	}
+	
+	Circle circle = minimumEnclosingCost(pointList);
+	
+	std::cout.precision(11);
+	std::cout << circle.p.x << ' ' << circle.p.y << ' ' << circle.r;
+}
