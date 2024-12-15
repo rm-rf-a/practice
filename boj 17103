@@ -1,0 +1,38 @@
+3부터 소수 전부해보면 되긴할듯?
+
+dp로하면 풀림?
+
+1.소수를 찾는다
+2.저장한다
+3. 주어진 수에서 소수를 뺸다 / 뺀 값이 소수인지 확인한다.
+4. 주어진 수의 파티션수를 저장한다.
+
+
+1.소수를 직접 찾아서 배열에 전부넣는다 (야가다)
+2.확인한다
+3. O(n)으로 푼다
+
+import sys
+
+prime = []
+check = [0] * 1000001
+check[0] = 1
+check[1] = 1
+
+for i in range(2, 1000001):
+    if check[i] == 0:
+        prime.append(i)
+        for j in range(2*i, 1000001, i):
+            check[j] = 1
+
+T = int(sys.stdin.readline())
+
+for _ in range(T):
+    count = 0
+    N = int(sys.stdin.readline())
+    for i in prime:
+        if i >= N:
+            break
+        if not check[N - i] and i <= N-i: 
+            count += 1
+    print(count)
