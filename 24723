@@ -1,1 +1,9 @@
 이거 한층 내려갈떄마다 2^n 씩 내려갈수있는 방법이생기는것이아니한가?
+이지까까
+
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+
+print(2**n)
